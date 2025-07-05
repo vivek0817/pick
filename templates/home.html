@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Pickles Store{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Welcome to Pickles Store</h1>
+        <p class="text-center lead">Discover our delicious collection of traditional and modern pickles!</p>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="bg-primary text-white p-5 rounded">
+            <h2>Fresh & Authentic Pickles</h2>
+            <p class="lead">Handcrafted with love and authentic spices</p>
+            <p>Premium quality pickles made with care and tradition</p>
+        </div>
+    </div>
+</div>
+
+<!-- Line by line: One product from each category -->
+<div class="row mb-5">
+    {% set veg = (products | selectattr('category', 'equalto', 'veg') | list)[0] %}
+    {% set nonveg = (products | selectattr('category', 'equalto', 'non_veg') | list)[0] %}
+    {% set snack = (products | selectattr('category', 'equalto', 'snacks') | list)[0] %}
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename=veg.image) }}" class="card-img-top" alt="{{ veg.name }}">
+            <div class="card-body">
+                <h5 class="card-title">🥬 {{ veg.name }}</h5>
+                <p class="card-text product-description">{{ veg.description }}</p>
+                <p class="card-text price">₹{{ veg.price }}</p>
+                <p class="card-text"><strong>Quantity:</strong> {{ veg.quantity }}</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('add_to_cart', product_id=veg.id) }}" class="btn btn-success flex-fill">Add to Cart</a>
+                    <a href="{{ url_for('veg_pickles') }}" class="btn btn-outline-success flex-fill">View All Vegetarian Pickles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename=nonveg.image) }}" class="card-img-top" alt="{{ nonveg.name }}">
+            <div class="card-body">
+                <h5 class="card-title">🍖 {{ nonveg.name }}</h5>
+                <p class="card-text product-description">{{ nonveg.description }}</p>
+                <p class="card-text price">₹{{ nonveg.price }}</p>
+                <p class="card-text"><strong>Quantity:</strong> {{ nonveg.quantity }}</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('add_to_cart', product_id=nonveg.id) }}" class="btn btn-danger flex-fill">Add to Cart</a>
+                    <a href="{{ url_for('non_veg_pickles') }}" class="btn btn-outline-danger flex-fill">View All Non-Vegetarian Pickles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename=snack.image) }}" class="card-img-top" alt="{{ snack.name }}">
+            <div class="card-body">
+                <h5 class="card-title">🍿 {{ snack.name }}</h5>
+                <p class="card-text product-description">{{ snack.description }}</p>
+                <p class="card-text price">₹{{ snack.price }}</p>
+                <p class="card-text"><strong>Quantity:</strong> {{ snack.quantity }}</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('add_to_cart', product_id=snack.id) }}" class="btn btn-warning flex-fill">Add to Cart</a>
+                    <a href="{{ url_for('snacks') }}" class="btn btn-outline-warning flex-fill">View All Snacks</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

@@ -1,0 +1,175 @@
+/* Custom styles for Pickles Store */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Fixed image sizing for product cards */
+.card-img-top {
+    width: 100%;
+    height: 250px !important;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* Product card specific styles */
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.product-card .card-body {
+    padding: 1.5rem;
+}
+
+/* Cart table styles */
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+/* Cart item images */
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .card-img-top {
+        height: 200px !important;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 180px !important;
+    }
+}
+
+/* Animation for success page */
+.success-animation {
+    animation: bounceIn 1s ease-in-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Product grid improvements */
+.row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.col-md-4 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Price styling */
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Description styling */
+.product-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+} 

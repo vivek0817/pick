@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Signup - Pickles Store{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Sign Up</h3>
+            </div>
+            <div class="card-body">
+                <div id="signup-message" class="text-center mb-3" style="color: red;"></div>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Sign Up</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const msg = document.getElementById('signup-message');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Loading...';
+    msg.style.color = 'red';
+    msg.textContent = '';
+
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+
+    setTimeout(() => {
+        try {
+            if (!username || !password) {
+                msg.textContent = 'Please enter both username and password.';
+                btn.disabled = false;
+                btn.innerHTML = 'Sign Up';
+                return;
+            }
+            if (localStorage.getItem('user_' + username)) {
+                msg.textContent = 'Username already exists. Please choose another.';
+                btn.disabled = false;
+                btn.innerHTML = 'Sign Up';
+                return;
+            }
+            localStorage.setItem('user_' + username, password);
+            msg.style.color = 'green';
+            msg.textContent = 'Signup successful! Redirecting to login...';
+            setTimeout(function() {
+                console.log("Redirecting to login...");
+                window.location.href = "/login";
+            }, 1200);
+        } catch (err) {
+            msg.textContent = 'An error occurred: ' + err;
+            btn.disabled = false;
+            btn.innerHTML = 'Sign Up';
+            console.error(err);
+        }
+    }, 400);
+});
+</script>
+{% endblock %} 

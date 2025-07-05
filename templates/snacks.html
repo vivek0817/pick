@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Snacks - Pickles Store{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Snacks</h2>
+        <p class="lead">Complementary snacks to go with your pickles.</p>
+    </div>
+</div>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename=product.image) }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text product-description">{{ product.description }}</p>
+                <p class="card-text price">₹{{ product.price }}</p>
+                <p class="card-text"><strong>Quantity:</strong> {{ product.quantity }}</p>
+                <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-warning">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if not products %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h4>No snacks available at the moment.</h4>
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %} 
