@@ -256,4 +256,5 @@ def success():
     return render_template('success.html')
 
 if __name__ == '__main__':
+    print("Flask server running at http://localhost:5000")
     app.run(debug=True)
